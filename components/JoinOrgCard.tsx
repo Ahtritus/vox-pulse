@@ -24,8 +24,8 @@ const JoinOrgCard = () => {
         <form>
           <div className="grid w-full items-center gap-4">
             <div className="flex flex-col space-y-1.5">
-              <Label htmlFor="name">Organization ID</Label>
-              <Input id="name" placeholder="ID of your organization" />
+              <Label htmlFor="orgId">Organization ID</Label>
+              <Input id="orgId" placeholder="ID of your organization" />
             </div>
           </div>
         </form>
