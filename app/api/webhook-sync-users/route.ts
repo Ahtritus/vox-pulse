@@ -1,6 +1,7 @@
 import { Webhook } from 'svix'
 import { headers } from 'next/headers'
 import { WebhookEvent } from '@clerk/nextjs/server'
+
  
 export async function POST(req: Request) {
  
@@ -52,7 +53,10 @@ export async function POST(req: Request) {
   const eventType = evt.type;
  
   console.log(`Webhook with and ID of ${id} and type of ${eventType}`)
+  console.log('Payload:', payload)
   console.log('Webhook body:', body)
+
+
  
   return new Response('', { status: 201 })
 }
