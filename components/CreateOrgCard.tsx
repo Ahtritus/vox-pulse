@@ -13,15 +13,35 @@ import { Label } from "@/components/ui/label";
 import React, { useContext, useState } from "react";
 import { OrgNameContext } from "../app/contexts/OrgNameContext";
 import { useRouter } from "next/navigation";
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
+
 
 const CreateOrgCard = () => {
   const { setName } = useContext(OrgNameContext);
   const router = useRouter();
   const [inputValue, setInputValue] = useState("");
 
-  const handleClick = (e: any) => {
+  const handleClick = async (e: any) => {
     e.preventDefault();
-    setName(e.target.elements.name.value);
+
+    const orgName = e.target.elements.name.value;
+    try {
+      const response = await fetch("/api/create", {
+        method: "POST",
+        body: JSON.stringify({ orgName })
+      });
+      
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
+      
+      const data = await response.json();
+      console.log(data.orgName);
+    } catch (error) {
+      console.log(error);
+    }
     router.push(`/create-org`);
   };
 

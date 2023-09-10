@@ -14,3 +14,10 @@ datasource db {
   // make sure to append ?connect_timeout=10 to the connection string
   // shadowDatabaseUrl = env(“SHADOW_DATABASE_URL”)
 }
+
+model Organisation {
+  id        String   @id @default(uuid())
+  orgName   String
+  orgId     String   @unique
+  createdAt DateTime @default(now())
+}
